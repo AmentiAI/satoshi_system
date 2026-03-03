@@ -54,9 +54,14 @@ interface SvgProps {
 }
 
 const STATIC_IMAGES: Record<string, string> = {
-  uncommon: "/Sat%20PFP/uncommon%20sat.png",
-  rare:     "/Sat%20PFP/Rare%20Sat.png",
-  alpha:    "/Sat%20PFP/Rare%20Alpha%20Sat.png",
+  uncommon:        "/Sat%20PFP/uncommon%20sat.png",
+  rare:            "/Sat%20PFP/Rare%20Sat.png",
+  alpha:           "/Sat%20PFP/Rare%20Alpha%20Sat.png",
+  "black-uncommon": "/More%20Sats/Black%20Uncommon%20Sat.png",
+  "black-rare":     "/More%20Sats/Rare%20Black%20Sat.png",
+  pali:            "/More%20Sats/Palindrome%20sat.png",
+  "seq-pali":      "/More%20Sats/Sequence%20Pali%20Sat.png",
+  jpeg:            "/More%20Sats/Rare%20Inscription%20sat.png",
 };
 
 export function SatTypeSvg({ slug, size, className = "" }: SvgProps) {
