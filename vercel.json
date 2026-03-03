@@ -1,0 +1,11 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "MAGISAT_API_KEY": "@magisat_api_key",
+    "MAGISAT_API_URL": "@magisat_api_url"
+  }
+}

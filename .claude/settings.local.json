@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:magisat.io)",
+      "WebFetch(domain:www.buyuncommonsats.com)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
