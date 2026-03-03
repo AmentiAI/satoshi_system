@@ -138,10 +138,6 @@ export function StoreClient({ site }: Props) {
         </p>
         <div className="flex items-center justify-center gap-8 mt-6 text-sm">
           <Stat value={total} label="Listed" color={site.primaryColor} />
-          <div className="w-px h-6 bg-white/10" />
-          <Stat value="Live" label="Prices" color={site.primaryColor} />
-          <div className="w-px h-6 bg-white/10" />
-          <Stat value="$3" label="Flat fee" color={site.primaryColor} />
         </div>
       </section>
 
