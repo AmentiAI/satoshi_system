@@ -1,8 +1,8 @@
-import { db } from "@/lib/db";
+import { getAllSites } from "@/lib/db";
 import Link from "next/link";
 
 export default async function SitesPage() {
-  const sites = await db.site.findMany({ orderBy: { createdAt: "asc" } });
+  const sites = await getAllSites();
 
   return (
     <div>

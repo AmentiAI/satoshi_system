@@ -1,8 +1,8 @@
-import { db } from "@/lib/db";
+import { getAllSites } from "@/lib/db";
 import Link from "next/link";
 
 export default async function AdminPage() {
-  const sites = await db.site.findMany({ orderBy: { createdAt: "asc" } });
+  const sites = await getAllSites();
   const activeSites = sites.filter((s) => s.isActive);
 
   return (

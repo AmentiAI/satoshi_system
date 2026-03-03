@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import { getSiteById } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { SiteForm } from "@/components/admin/SiteForm";
 import Link from "next/link";
@@ -9,7 +9,7 @@ interface Props {
 
 export default async function EditSitePage({ params }: Props) {
   const { id } = await params;
-  const site = await db.site.findUnique({ where: { id } });
+  const site = await getSiteById(id);
   if (!site) notFound();
 
   return (

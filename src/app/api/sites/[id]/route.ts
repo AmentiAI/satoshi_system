@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getSiteById, updateSite, deleteSite } from "@/lib/db";
 import { clearSiteCache } from "@/lib/sites";
 
 export async function GET(
@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const site = await db.site.findUnique({ where: { id } });
+  const site = await getSiteById(id);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(site);
 }
@@ -19,24 +19,22 @@ export async function PUT(
   const { id } = await params;
   try {
     const body = await req.json();
-    const site = await db.site.update({
-      where: { id },
-      data: {
-        domain: body.domain,
-        name: body.name,
-        tagId: body.tagId,
-        tagSlug: body.tagSlug,
-        description: body.description,
-        primaryColor: body.primaryColor,
-        accentColor: body.accentColor,
-        textColor: body.textColor,
-        logoUrl: body.logoUrl,
-        metaTitle: body.metaTitle,
-        metaDesc: body.metaDesc,
-        isActive: body.isActive,
-      },
+    const site = await updateSite(id, {
+      domain: body.domain,
+      name: body.name,
+      tagId: body.tagId,
+      tagSlug: body.tagSlug,
+      description: body.description,
+      primaryColor: body.primaryColor,
+      accentColor: body.accentColor,
+      textColor: body.textColor,
+      logoUrl: body.logoUrl,
+      metaTitle: body.metaTitle,
+      metaDesc: body.metaDesc,
+      isActive: body.isActive,
     });
-    clearSiteCache(body.domain);
+    if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    clearSiteCache(site.domain);
     return NextResponse.json(site);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Unknown error";
@@ -50,7 +48,8 @@ export async function DELETE(
 ) {
   const { id } = await params;
   try {
-    const site = await db.site.delete({ where: { id } });
+    const site = await deleteSite(id);
+    if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
     clearSiteCache(site.domain);
     return NextResponse.json({ ok: true });
   } catch {

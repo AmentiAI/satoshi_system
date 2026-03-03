@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["pg", "pg-native", "@prisma/adapter-pg", "bitcoinjs-lib", "tiny-secp256k1"],
+  serverExternalPackages: ["bitcoinjs-lib", "tiny-secp256k1"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "**.magisat.io" },
